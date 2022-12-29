@@ -1,0 +1,397 @@
+//Biến về color
+$c0-primary: #b61984;
+$c0-dark: #181818;
+$c0-light: #fff;
+$c1-primary:#ebc2e0;
+$c2-primary: #b31b8b;
+
+//Biến padding
+$p-0: 0px;
+$p-1: 15px;
+$p-2: 30px;
+$p-3: 45px;
+//Biến margin
+$m-0: 0px;
+$m-1: 12px;
+$m-2: 30px;
+$m-3: 45px;
+
+//Biến về font-size
+$text-xs: 14px;
+$text-base: 16px;
+$text-xl: 18px;
+$text-2xl: 20px;
+$text-3xl: 30px;
+$text-4xl: 40px;
+$text-5xl: 50px;
+$text-6xl: 60px;
+$text-7xl: 70px;
+//Biến về font-weight
+$fw-light: 300;
+$fw-regular: 400;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+//Biến về background
+$bg0-primary: #b21980;
+$bg2-primary: #aa017e;
+$bg1-primary: #dcd1f0;
+$bg-transparent: transparent;
+$bg0-light: #fff;
+
+//Biên height
+$he1: 15px;
+$he2: 25px;
+$he3: 35px;
+$he4: 45px;
+// biến border radius
+$br2: 24px;
+//Khai báo hàm
+@mixin text($fz: $text-base, $fw: $fw-regular, $c: $c0-dark) {
+        font-size: $fz ;
+        font-weight: $fw;
+        color: $c;
+}
+
+@mixin button($bg, $pd, $bd, $br, $fz, $fw, $c, $bg-hover, $c-hover) {
+        background: $bg;
+        padding: $pd;
+        border: $bd;
+        border-radius: $br;
+        @include text($fz, $fw , $c);
+        transition: .5s;
+        cursor: pointer;
+
+        &:hover {
+                background: $bg-hover;
+                color: $c-hover;
+        }
+}
+
+@mixin link($fz, $fw, $c, $c-hover) {
+        @include text($fz, $fw , $c);
+
+        &:hover {
+                color: $c-hover;
+                transition: 0.3s;
+        }
+}
+
+@mixin icon($fz, $fw, $c, $c-hover) {
+        @include text($fz, $fw, $c);
+
+        &:hover {
+                color: $c-hover;
+                transition: 0.5s;
+        }
+}
+
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+@mixin input($he, $br) {
+        height: $he;
+        border-radius: $br;
+};
+
+.container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+}
+
+.header {
+        background-image: url(./../images/yellow_top_wave_01.png);
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 12rem;
+
+        .container {
+                display: flex;
+                justify-content: space-between;
+
+                .logo {
+                        margin-top: 10px;
+
+                        a {
+                                @include text($text-xl, $fw-regular, $c0-light);
+                                text-decoration: none;
+
+                                span {
+                                        background: $bg0-primary;
+                                        letter-spacing: 7px;
+                                        padding: 5px;
+                                        border-radius: 3px;
+                                }
+                        }
+                }
+
+                nav {
+                        display: flex;
+                        align-items: center;
+
+                        li {
+                                list-style: none;
+                                padding: 30px;
+
+                                a {
+                                        @include link($text-base, $fw-regular, $c0-dark, $c0-primary);
+                                        text-decoration: none;
+                                }
+                        }
+
+                        .button-icon {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+
+                                .btn-phone {
+                                        @include button($bg0-primary, 10px, $bg-transparent , 50px, $text-base , $fw-regular , $c0-light , $bg0-light, $c0-primary);
+                                }
+
+                                .icon {
+                                        a {
+                                                @include icon($text-xs, $fw-regular, $c0-dark, $c0-primary);
+                                                margin-left: $m-1;
+                                        }
+
+                                }
+                        }
+                }
+        }
+}
+
+.about {
+        background-image: url(./../images/Violet_top_left_wave.png);
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 100%;
+
+        .container {
+                display: flex;
+                justify-content: space-between;
+
+                .left {
+                        transform: translateY(70px);
+
+                        h3 {
+                                @include text($text-xl, $fw-regular , $c0-primary );
+                        }
+
+                        h1 {
+                                @include text($text-6xl, $fw-semibold , $c0-dark );
+                        }
+                }
+
+                .right {
+                        img {
+                                transform: translate(-20px, -120px);
+                                width: 100%;
+                        }
+                }
+        }
+}
+
+.Thumbnail {
+        background: $bg1-primary;
+
+        .album {
+                .container {
+                        position: relative;
+                        z-index: 2;
+
+                        .row {
+                                --bs-gutter-x: 40px;
+
+                                .col {
+                                        .card {
+                                                width: 100%;
+                                                border-radius: 10px;
+
+                                                img {
+                                                        border-top-left-radius: 10px;
+                                                        border-top-right-radius: 10px;
+                                                        width: 100%;
+                                                }
+
+                                                .card-body {
+                                                        h6 {
+                                                                @include text($text-xs, $fw-semibold, $c0-primary);
+                                                        }
+
+                                                        text-align: center;
+
+                                                        h3 {
+                                                                font-weight: $fw-bold;
+                                                        }
+
+                                                        p {}
+
+                                                        .d-flex {}
+                                                }
+                                        }
+                                }
+                        }
+                }
+        }
+}
+
+.carousel {
+        background-image: url(./../images/Wave_White_bottom_right_shape_01.png);
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: 100%;
+        transform: translateY(-324px);
+
+        .container {
+                transform: translate(5%, 400px);
+                display: flex;
+
+                .left {
+                        img {
+                                width: 100%;
+                        }
+                }
+
+                .right {
+                        box-shadow: 0 30px 30px -10px rgb(0 0 0 / 20%);
+                        background-color: $bg0-light;
+
+                        .right-center {
+                                transform: translateX(10%);
+
+                                h1 {
+                                        font-weight: $fw-semibold;
+                                        margin-top: $m-3;
+                                        margin-bottom: $m-3;
+                                }
+
+                                form {
+                                        .txt-name {
+                                                @include input($he4, $br2);
+                                                position: relative;
+
+                                        }
+
+                                        .txt-email {
+                                                @extend .txt-name;
+                                        }
+
+                                        .txt-select {
+                                                @extend .txt-name;
+                                                color: #84757d;
+                                        }
+
+                                        .txt-mes {
+                                                @extend .txt-name;
+                                                height: 100px;
+                                        }
+
+                                        .btn-send {
+                                                margin: $m-3 0;
+                                                width: 150px;
+                                                @extend .txt-name;
+                                                height: 50px;
+                                                @include button($bg0-primary, 10px, $bg-transparent , 50px, $text-base , $fw-regular , $c0-light , $bg0-light, $c0-primary);
+                                        }
+
+                                        i {
+                                                color: $c0-primary;
+                                                font-size: $text-xs;
+                                                transform: translate(5px, -35px);
+                                        }
+
+                                        .i {
+                                                transform: translate(5px, -90px);
+                                        }
+                                }
+                        }
+
+
+                }
+        }
+}
+
+.color {
+        background-image: url(./../images/accent_bottom_wave_01.png);
+        background-repeat: no-repeat;
+        background-position:top;
+        background-size: 100%;
+        height: 330px;
+        transform: translateY(-220px);
+        position: relative;
+        z-index: -100;
+}
+
+.color-2 {
+        background-color: $bg2-primary;
+        height: 100px;
+        transform: translateY(-225px);
+}
+
+.footer {
+        background-image: url(./../images/footer_background.jpg);
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: 100%;
+        height: 400px;
+        transform: translateY(-225px);
+        .container {
+                .row {
+                        .contact {
+                                h1 {
+                                        @include text($text-3xl, $fw-regular, $c0-light);
+                                        margin-bottom: $m-2;
+                                }
+
+                                p {
+                                        @extend h1;
+                                        font-size: $text-xs;
+                                        margin-bottom: $m-1;
+                                }
+
+                                .icon {
+                                        a {
+                                                @include icon($text-xs, $fw-regular, $c0-light, $c0-dark);
+                                                margin-right: $m-1;
+                                        }
+                                }
+                        }
+
+                        .link {
+                                h1 {
+                                        @include text($text-3xl, $fw-regular, $c0-light);
+                                        margin-bottom: $m-2;
+                                }
+                                a {
+                                        @include link($text-base, $fw-regular, $c0-light, $c1-primary);
+                                        text-decoration: none;
+                                        display: block;
+                                        margin-bottom: $m-1;
+                                }
+                                .txt-mail {
+                                        @include input($he4, $br2);
+                                        text-align: center;
+                                        border: 1px solid $c2-primary !important; 
+                                        background-color: $bg2-primary;
+                                        color: $c0-light;
+                                        width: 250px;
+                                }
+
+                                .btn-sub {
+                                        @include button($bg0-light, 10px, $bg-transparent , 50px, $text-base , $fw-regular , $c0-dark , $bg2-primary, $c0-light);
+                                        &:hover{
+                                                border:1px solid  $c0-light;
+                                        };
+                                        width: 250px;
+                                        margin-top: $m-1;
+                                }
+                        }
+
+                }
+        }
+}
